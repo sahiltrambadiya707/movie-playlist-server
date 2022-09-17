@@ -25,7 +25,7 @@ const loadConfigurationFromFile = async (
 
   process.env.APP_ENVIRONMENT = NODE_ENV;
   process.env.APP_NAME = packageInfo.name.toUpperCase();
-  process.env.APP_PORT = APP_PORT;
+  process.env.APP_PORT = 5000;
   process.env.APP_RELEASE =
     packageInfo.name.toUpperCase() + "@" + packageInfo.version;
   process.env.APP_VERSION = packageInfo.version;

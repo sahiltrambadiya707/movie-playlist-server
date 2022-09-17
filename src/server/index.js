@@ -34,9 +34,9 @@ const runServer = async () => {
   logger.info(`
     APP_ENVIRONMENT: ${process.env.APP_ENVIRONMENT}
     APP_NAME: ${process.env.APP_NAME}
-    APP_PORT: ${process.env.APP_PORT}
     APP_RELEASE: ${process.env.APP_RELEASE}
     APP_VERSION: ${process.env.APP_VERSION}`);
+    // APP_PORT: ${process.env.APP_PORT}
 
   initMiddleware(app, logger);
   initRouter(app, logger);
