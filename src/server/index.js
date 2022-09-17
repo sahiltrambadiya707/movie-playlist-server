@@ -51,8 +51,9 @@ const runServer = async () => {
   // );
   // Init Socket.io
   // await webSocket(server, logger);
-  server.listen(process.env.APP_PORT, async () => {
-    logger.info(`${process.env.APP_RELEASE} server STARTED on port: ${process.env.APP_PORT}\n`);
+  server.listen(process.env.APP_PORT || 5000, async () => {
+    const port = server.address().port;
+    logger.info(`${process.env.APP_RELEASE} server STARTED on port: ${port}\n`);
 
     //* Additional info
     // const msg = `\`${process.env.APP_ENVIRONMENT}\` \`${os.hostname()}\` \`${process.env.APP_RELEASE}\` server *STARTED* on port \`${process.env.APP_PORT}\``;
