@@ -82,16 +82,16 @@ module.exports = exports = async (req, res, next) => {
       time: Date.now(),
     };
 
-    try {
-      await global.models.GLOBAL.LOG(entry).save({ checkKeys: false });
-    } catch (error) {
-      if (error) {
-        logger.error(
-          "Error encountered while trying to log the incoming request:\n" +
-            error
-        );
-      }
-    }
+    // try {
+    //   await global.models.GLOBAL.LOG(entry).save({ checkKeys: false });
+    // } catch (error) {
+    //   if (error) {
+    //     logger.error(
+    //       "Error encountered while trying to log the incoming request:\n" +
+    //         error
+    //     );
+    //   }
+    // }
 
     // Check for the X-Version-Server for API calls, BUT ignore this check for /webhook calls
     //  let skipServerVersionCheck = false;
