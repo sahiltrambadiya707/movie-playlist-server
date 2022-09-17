@@ -1,0 +1,18 @@
+{
+  "MONGODB": {
+    "GLOBAL": {
+      "DATABASE": {
+        "MOVIEPLAYLIT": {
+          "COLLECTION": {
+            "USER": "user",
+            "PLAYLIST": "playlist",
+            "MOVIE": "movie"
+          },
+          "NAME": "moviePlaylist"
+        }
+      },
+      "URI": "mongodb+srv://sahil:sahil@mycluster.2ud6h.mongodb.net/moviePlaylist",
+      "USE_TEST_PIN": "true"
+    }
+  }
+}
