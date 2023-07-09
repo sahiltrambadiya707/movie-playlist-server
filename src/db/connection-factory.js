@@ -26,14 +26,12 @@ module.exports = function (config) {
 
     // Check if we already created a connection - if yes, return that, else, create a new connection, store and return.
     if (this.connections[connectionName]) {
-      logger.info(
-        `Connection to database (domain: ${domain}, db: ${db.NAME}) successful!`
-      );
+      logger.info(`Connection to database (domain: ${domain}, db: ${db.NAME}) successful!`);
       return this.connections[connectionName];
     } else {
       let connection = await mongoose.createConnection(
-        // `${config.MONGODB[domain].URL}/${db.NAME}`, //* Change to dynamic when database will be live
-        `${process.env.MONGOURI}`,
+        `${config.MONGODB.GLOBAL.URI}/${db.NAME}`, //* Change to dynamic when database will be live
+        // `${process.env.MONGOURI}`,
         {
           autoReconnect: true,
           promiseLibrary: Promise,
@@ -46,9 +44,7 @@ module.exports = function (config) {
       );
 
       connection.on("connected", () =>
-        logger.info(
-          `Connection to database (domain: ${domain}, db: ${db.NAME}) successful!`
-        )
+        logger.info(`Connection to database (domain: ${domain}, db: ${db.NAME}) successful!`)
       );
       connection.on("error", (error) =>
         logger.error(
@@ -56,9 +52,7 @@ module.exports = function (config) {
         )
       );
       connection.on("disconnected", () =>
-        logger.info(
-          `Connection to database (domain: ${domain}, db: ${db.NAME}) terminated!`
-        )
+        logger.info(`Connection to database (domain: ${domain}, db: ${db.NAME}) terminated!`)
       );
 
       /* If the Node process ends, close the Mongoose connection */
@@ -72,9 +66,7 @@ module.exports = function (config) {
       });
 
       this.connections[connectionName] = connection;
-      logger.info(
-        `Connection to database (domain: ${domain}, db: ${db.NAME}) successful!`
-      );
+      logger.info(`Connection to database (domain: ${domain}, db: ${db.NAME}) successful!`);
 
       return this.connections[connectionName];
     }

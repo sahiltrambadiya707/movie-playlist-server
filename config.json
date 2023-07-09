@@ -11,7 +11,7 @@
           "NAME": "moviePlaylist"
         }
       },
-      "URI": "mongodb+srv://sahil:sahil@mycluster.2ud6h.mongodb.net/moviePlaylist?retryWrites=true&w=majority",
+      "URI": "mongodb+srv://sahil:sahil@mycluster.2ud6h.mongodb.net",
       "USE_TEST_PIN": "true"
     }
   }

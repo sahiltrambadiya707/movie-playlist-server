@@ -46,7 +46,9 @@ module.exports = exports = {
 
       // Do we need to check for repeated login attempts?
 
-      const user = await global.models.GLOBAL.USER.findOne({ phone: phone });
+      const user = await global.models.GLOBAL.USER.findOne({
+        $or: [{ phone: phone }, { email: phone }],
+      });
       if (!user) {
         logger.error(`/login - No USER (phone: ${phone}) found with the provided password!`);
         const data4createResponseObject = {
@@ -110,5 +112,3 @@ module.exports = exports = {
     }
   },
 };
-
-

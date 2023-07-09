@@ -16,9 +16,9 @@ module.exports = exports = {
     let skip = (page - 1) * limit;
 
     try {
-      // const total = await global.models.GLOBAL.PLAYLIST.find({
-      //   privet: { $eq: false },
-      // }).countDocuments();
+      const total = await global.models.GLOBAL.PLAYLIST.find({
+        privet: { $eq: false },
+      }).countDocuments();
 
       const getUserPlaylist = await global.models.GLOBAL.PLAYLIST.find({
         playlistBy: ObjectId(_id),
@@ -32,7 +32,7 @@ module.exports = exports = {
         req: req,
         result: 0,
         message: messages.SUCCESS,
-        payload: { result: getUserPlaylist },
+        payload: { result: getUserPlaylist, count: total, page: page, limit: limit },
         logPayload: false,
       };
 

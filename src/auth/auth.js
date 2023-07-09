@@ -120,7 +120,7 @@ module.exports.setup = () => {
           next(null, false);
         }
 
-        model = global.models.GLOBAL.ADMIN;
+        model = global.models.GLOBAL.USER;
         // If the phone is not present in the JWT payload then get the user details based on id
         if (isEmpty(phone)) {
           criteria = { _id: id, "status.name": { $ne: enums.USER_STATUS.DISABLED } };
@@ -164,6 +164,8 @@ module.exports.setup = () => {
           };
         }
       }
+
+      console.log(model)
       //  logger.info('#JwtStrategy - criteria: ' + JSON.stringify(criteria) + '}' + model);
       model
         .findOne(criteria)

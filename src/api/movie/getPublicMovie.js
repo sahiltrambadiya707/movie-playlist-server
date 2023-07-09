@@ -10,22 +10,28 @@ const utils = require("../../utils");
 module.exports = exports = {
   // route handler
   handler: async (req, res) => {
-    req.query.page = req.query.page ? req.query.page : 1;
-    req.query.limit = req.query.limit ? req.query.limit : 10;
-    let limit = parseInt(req.query.limit);
-    let skip = (parseInt(req.query.page) - 1) * limit;
+    let page = parseInt(req.query.page) ? parseInt(req.query.page) : 1;
+    let limit = parseInt(req.query.limit) ? parseInt(req.query.limit) : 10;
+    let skip = (page - 1) * limit;
     const { playlistId } = req.params;
 
     try {
+      const total = await global.models.GLOBAL.MOVIE.find({
+        $and: [{ playlist: ObjectId(playlistId) }, { privet: { $ne: true } }],
+      }).countDocuments();
+
       const getPublicMovie = await global.models.GLOBAL.MOVIE.find({
         $and: [{ playlist: ObjectId(playlistId) }, { privet: { $ne: true } }],
-      }).sort({ createdAt: -1 });
+      })
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit);
 
       const data4createResponseObject = {
         req: req,
         result: 0,
         message: messages.SUCCESS,
-        payload: { result: getPublicMovie },
+        payload: { result: getPublicMovie, count: total, page: page, limit: limit },
         logPayload: false,
       };
 
