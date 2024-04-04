@@ -11,7 +11,7 @@
           "NAME": "moviePlaylist"
         }
       },
-      "URI": "mongodb+srv://sahil:sahil@mycluster.2ud6h.mongodb.net",
+      "URI": "mongodb+srv://mpms:mpms_123@allwin.fwi1pe2.mongodb.net",
       "USE_TEST_PIN": "true"
     }
   }
